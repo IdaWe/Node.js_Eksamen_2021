@@ -1,11 +1,14 @@
 const express = require("express");
 require('dotenv').config();
 
+//const bodyParser = require("body-parser");
+
 const app = express();
 
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 const blogsRouter = require("./routes/blogs.js");
 const contactRouter = require("./routes/contact.js");
@@ -56,6 +59,12 @@ app.get("/contact", (req, res) => {
 app.get("/blogs", (req, res) => {
     res.send(header + blogs + footer);
 });
+
+app.post("/blogs", (req, res) => {
+    console.log(req.body)
+    res.redirect("/blogs")
+});
+
 
 
 

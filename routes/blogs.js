@@ -18,15 +18,15 @@ const router = require("express").Router();
 
 const blogs = [{
     title: "Life",
+    date: "Start dato: " + new Date("2021-02-24").toDateString(),
     description: "Personal blog about life",
-    startDate: "Start dato: " + new Date("2021-02-24").toDateString(),
-    endDate: "Slut dato: " + new Date("2021-11-08").toDateString(),
     cardPicture: src=""
-},{
+},
+
+{
     title: "Favorite food",
+    date: "Start dato: " + new Date("2021-01-27").toDateString(),
     description: "A blog about my favorite food",
-    startDate: "Start dato: " + new Date("2021-01-27").toDateString(),
-    endDate: "Slut dato: " + new Date("2021-03-09").toDateString(),
     cardPicture: src=""
 }]
 
