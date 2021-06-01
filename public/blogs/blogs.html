@@ -1,6 +1,39 @@
 
-    <div id="blogs"></div>
-
-
+<div id="blogs">
 </div>
+
+<div class="form-wrap">
+    <form method="POST" action="/blogs">
+        <div class="form-row">
+            <div class="form-item">
+                <label>Title</label>
+                <input type="text" name="title" placeholder="Write a title" class="form-control">
+            </div>
+
+            <div class="form-item">
+                <label>Date</label>
+                <input type="date" name="date" placeholder="Date" class="form-control">
+            </div>
+
+            <div class="form-row">
+                <div class="form-item">
+                    <label>Description</label>
+                    <textarea name="description" placeholder="Description" class="form-control"></textarea>
+                </div>
+            </div>
+
+            <!--
+            <div class="form-item">
+                <label>Picture</label>
+                <input type="image" input name="picture" placeholder="Picture" class="form-control">
+            </div>
+            -->
+        </div>
+
+        <div class="button-row">
+            <button type="submit">Add blog post</button>
+        </div>
+    </form>
+</div>
+
 <script src="/blogs/blogs.js"></script>
