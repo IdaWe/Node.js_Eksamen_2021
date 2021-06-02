@@ -13,6 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 const blogsRouter = require("./routes/blogs.js");
 const contactRouter = require("./routes/contact.js");
 
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
+
 app.use(blogsRouter.router);
 app.use(contactRouter.router);
 
@@ -27,7 +30,17 @@ const contact = fs.readFileSync(__dirname + "/public/contact/contact.html", "utf
 const about = fs.readFileSync(__dirname + "/public/about/about.html", "utf-8");
 const blogs = fs.readFileSync(__dirname + "/public/blogs/blogs.html", "utf-8");
 
+// ------------------------------------------
 
+io.on("connection", (socket) => {  //when a client socket connects to our server socket, then a connection event has been fired. This is all about events and event emitters. This event is a default event called connection. This takes a callback thant contains the socket (socket)
+    console.log("A scoket connected with id: ", socket.id); //this callback ( (socket) => {onsole.log} ) is called everytime a socket connects
+   
+
+    socket.on("disconnect", () => {
+        console.log("A socket disconnected"); //denne kan fx bruges til at vise at folk forlader en chat, eller stadig er i rummet 
+    });
+
+});   
 
 
 
@@ -35,7 +48,6 @@ const blogs = fs.readFileSync(__dirname + "/public/blogs/blogs.html", "utf-8");
 
 
 const databaseConnection = require("./database/connection.js");
-
 //app.use(databaseConnection.)
 
 
@@ -77,7 +89,7 @@ const port = process.env.PORT || 8080;
 console.log(port);
 // app.listen takes a callback as the second argument which takes error as an
 // argument. Implement the callback
-app.listen(port, (error) => { // error er af datatypen object
+server.listen(port, (error) => { // error er af datatypen object
     if (error) {
         console.log(error);
     }
